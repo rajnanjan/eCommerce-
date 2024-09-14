@@ -1,0 +1,63 @@
+{
+  "name": "sakthivel",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "nodemon -r dotenv/config .",
+    "lint": "eslint .",
+    "format": "npx prettier --write \"**/*.js\"",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint-staged": "lint-staged",
+    "prepare": "node .husky/install.js",
+    "migrate:make": "npx knex --knexfile db/knexfile.js --env=dev migrate:make",
+    "migrate:latest": "npx knex --knexfile db/knexfile.js --env=dev migrate:latest",
+    "migrate:down": "npx knex --knexfile db/knexfile.js --env=dev migrate:down",
+    "seed:make": "npx knex --knexfile db/knexfile.js --env=dev seed:make",
+    "seed:run": "npx knex --knexfile db/knexfile.js --env=dev seed:run"
+  },
+  "lint-staged": {
+    "*.js": [
+      "eslint --cache --cache-strategy content --fix"
+    ],
+    "*.{json,js,html}": [
+      "prettier --write --ignore-unknown"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rajnanjan/eCommerce-.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rajnanjan/eCommerce-/issues"
+  },
+  "homepage": "https://github.com/rajnanjan/eCommerce-#readme",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "cors": "^2.8.5",
+    "express": "^4.21.0",
+    "helmet": "^7.1.0",
+    "joi": "^17.13.3",
+    "jsonwebtoken": "^9.0.2",
+    "knex": "^3.1.0",
+    "moment": "^2.30.1",
+    "multer": "^1.4.5-lts.1",
+    "nodemon": "^3.1.4",
+    "pg": "^8.12.0"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^19.5.0",
+    "@commitlint/config-conventional": "^19.5.0",
+    "dotenv": "^16.4.5",
+    "eslint": "^8.57.0",
+    "eslint-config-google": "^0.14.0",
+    "eslint-config-prettier": "^9.1.0",
+    "husky": "^9.1.6",
+    "lint-staged": "^15.2.10",
+    "prettier": "^3.3.3"
+  }
+}
