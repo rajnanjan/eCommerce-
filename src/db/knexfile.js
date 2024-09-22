@@ -1,6 +1,6 @@
 // Update with your config settings.
 
-import logger from './logger.js';
+import logger from '../utils/logger.js';
 
 const config = {
   dev: {
@@ -8,7 +8,7 @@ const config = {
     connection: {
       host: '127.0.0.1',
       port: 5432,
-      database: 'ripple_thrive',
+      database: 'chicken_coop',
       user: 'postgres',
       password: 'root'
     },
@@ -18,10 +18,10 @@ const config = {
     },
     migrations: {
       tableName: 'rt_migrations',
-      directory: '../migrations'
+      directory: './migrations'
     },
     seeds: {
-      directory: '../seeds'
+      directory: './seeds'
     }
   },
   development: {
