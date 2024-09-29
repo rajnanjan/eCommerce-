@@ -3,7 +3,7 @@
     "es2021": true,
     "node": true
   },
-  "extends": ["google", "prettier"],
+  "extends": ["google", "prettier","eslint:recommended"],
   "parserOptions": {
     "ecmaVersion": 2020,
     "sourceType": "module"
@@ -11,6 +11,8 @@
   "rules": {
     "valid-jsdoc": "off",
     "camelcase": "off",
-    "no-unused-vars":"warn"
+    "no-unused-vars":"warn",
+    "no-console":"warn",
+    "semi":"error"
   }
 }
