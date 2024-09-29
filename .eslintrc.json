@@ -5,11 +5,12 @@
   },
   "extends": ["google", "prettier"],
   "parserOptions": {
-    "ecmaVersion": "latest",
+    "ecmaVersion": 2020,
     "sourceType": "module"
   },
   "rules": {
     "valid-jsdoc": "off",
-    "camelcase": "off"
+    "camelcase": "off",
+    "no-unused-vars":"warn"
   }
 }

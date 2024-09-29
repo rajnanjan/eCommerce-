@@ -1,26 +1,21 @@
-import express from 'express';
-import 'dotenv/config';
-import cors from 'cors';
-import helmet from 'helmet';
-
-import db from './src/db/db.js';
+import 'dotenv/config.js';
+import http from 'http';
+import https from 'https';
+import app from './src/app.js';
 import logger from './src/utils/logger.js';
 
-const app = express();
-app.use(express.json());
-app.use(helmet());
-app.use(
-  cors({
-    origin: '*'
-  })
-);
-
-db.connect()
-  .then(() => logger.info('DATABASE connected !!'))
-  .catch((error) => logger.error('Database error: ' + error));
+const options = {};
+const server = http.createServer(app);
+const httpsServer = https.createServer(options, app);
 const PORT = process.env.PORT;
+const SPORT = process.env.SPORT;
 
-app.get('/', (_, res) => {
-  res.send('Server is up');
-});
-app.listen(PORT, () => console.log('Server is up..'));
+if (PORT)
+  server.listen(PORT, () => {
+    logger.info('Server is up....' + PORT);
+  });
+
+if (SPORT)
+  httpsServer.listen(SPORT, () => {
+    logger.info('Server is up....' + SPORT);
+  });
