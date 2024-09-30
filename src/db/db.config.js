@@ -5,6 +5,9 @@ import Knex from 'knex';
  * Class for DB Connection
  */
 class DB {
+  /**
+   * Creates a new DB instance.
+   */
   constructor() {
     this.conn = null;
   }
