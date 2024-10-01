@@ -6,6 +6,7 @@ import helmet from 'helmet';
 import db from './db/db.js';
 import logger from './utils/logger.js';
 import morganMiddleware from './middlewares/morgan.middleware.js';
+import productImages from './routes/attachment.router.js';
 
 // routes
 import userRouter from './routes/user.route.js';
@@ -31,6 +32,7 @@ app.get('/', (_, res) => {
   res.send('Server is up');
 });
 
+app.use('/api/v1/image',productImages);
 app.use('/api/v1/users', userRouter);
 
 // Keep the error handler in end of routes

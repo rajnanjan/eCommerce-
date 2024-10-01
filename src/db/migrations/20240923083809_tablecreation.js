@@ -12,7 +12,7 @@ export const up = async function (knex) {
   });
   await knex.schema.createTable('product_images', (table) => {
     table.bigIncrements('id').primary();
-    table.string('image_name').notNullable(); // needs to check for unquie constraint
+    table.string('image_name').notNullable();
     table.binary('image_data').notNullable();
     table.timestamp('c_ts').notNullable().defaultTo(knex.fn.now());
   });

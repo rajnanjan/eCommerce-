@@ -3,12 +3,11 @@ import http from 'http';
 import https from 'https';
 import app from './src/app.js';
 import logger from './src/utils/logger.js';
-import productImages from './src/routers/attachment.router.js';
 
 const options = {};
 const server = http.createServer(app);
 const httpsServer = https.createServer(options, app);
-const PORT = process.env.PORT;
+const PORT = process.env.PORT||8000;
 const SPORT = process.env.SPORT;
 
 if (PORT)

@@ -7,8 +7,9 @@ export const imagesadd = async (req, res, next) => {
         image_name:req.files[0].originalname,
         image_data:req.files[0].buffer 
     }
+    console.log(request)
     const response = await attach(request);
-    res.status(200).json({ status:true,data: [response] });   
+    res.status(200).json({ status:true,data: response });   
     } catch (error) {
         next(error);
     }
