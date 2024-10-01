@@ -5,7 +5,7 @@ import { getimage,addimage } from '../validationschema/products.schema.js';
 import { Router } from 'express';
 
 const router = new Router();
-router.post('/attach',imageupload,validateImages(addimage),imagesadd)
+router.post('/attach',imageupload,validateImages(addimage),imagesadd);
 router.get('/get',validateQuery(getimage),imageget);
 
 export default router;

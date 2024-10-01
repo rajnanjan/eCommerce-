@@ -9,7 +9,7 @@ if (error.code === 'ECONNREFUSED') {
   error.code = 500;
 }
 
-const message = error.message ? error.message.replaceAll(/\"/g, "'") : 'Internal Error';
+const message = error.message ? error.message.replaceAll(/"/g, "'") : 'Internal Error';
 const code = error.code ?? 500;
 
 const response = {

@@ -6,8 +6,7 @@ export const imagesadd = async (req, res, next) => {
     const request ={
         image_name:req.files[0].originalname,
         image_data:req.files[0].buffer 
-    }
-    console.log(request)
+    };
     const response = await attach(request);
     res.status(200).json({ status:true,data: response });   
     } catch (error) {
@@ -20,7 +19,7 @@ export const imageget = async(req, res, next) => {
         const {id}= req.query;
         const response = await getimages(id);
         res.set('Content-Type', 'image/jpeg');
-        res.send(response.image_data)
+        res.send(response.image_data);
     } catch (error) {
         next(error);
     }

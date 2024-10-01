@@ -7,4 +7,4 @@ export const uploadimages=Joi.object({
           mimetype: Joi.string().valid('image/jpeg', 'image/png').required(),
           size: Joi.number().max(1000000)
         }).unknown()
-})
+});

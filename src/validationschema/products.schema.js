@@ -7,7 +7,7 @@ export const addimage = Joi.object({
     mimetype: Joi.string().valid('image/jpeg', 'image/png').required(),
     size: Joi.number().max(1000000) 
   }).unknown()
-})
+});
 // export const addimage = Joi.object({
 //     item_type: Joi.string().required(),
 //     item_name: Joi.string().required(),

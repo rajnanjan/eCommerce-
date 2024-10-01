@@ -11,7 +11,7 @@ export const attach = async (data)=>{
         await conn.rollback();
         throw error;
     }
-}
+};
 
 export const getimages = async (id)=>{
     const conn = await db.getTransaction();
@@ -24,5 +24,5 @@ export const getimages = async (id)=>{
         await conn.rollback();
         throw error;
     }
-}
+};
 

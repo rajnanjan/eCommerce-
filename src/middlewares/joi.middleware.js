@@ -37,7 +37,6 @@ export const validateQuery = (schema) => {
 
 export const validateImages =(schema) => {
     return (req, res, next) => {
-      console.log(req.files[0])
         const { error } = schema.validate({
             name: req.files[0].originalname,
             image: req.files[0]
