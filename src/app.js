@@ -9,8 +9,9 @@ import morganMiddleware from './middlewares/morgan.middleware.js';
 import productImages from './routes/attachment.router.js';
 
 // routes
-import userRouter from './routes/user.route.js';
+import authRouter from './routes/auth.route.js';
 import { errorMiddleware } from './middlewares/error.middleware.js';
+import { authMiddleware } from './middlewares/auth.middleware.js';
 
 const app = express();
 app.use(express.json());
@@ -32,8 +33,12 @@ app.get('/', (_, res) => {
   res.send('Server is up');
 });
 
-app.use('/api/v1/image',productImages);
-app.use('/api/v1/users', userRouter);
+app.use('/api/v1/auth', authRouter);
+
+// Auth Middleware
+app.use(authMiddleware);
+
+app.use('/api/v1/image', productImages);
 
 // Keep the error handler in end of routes
 app.use(errorMiddleware);

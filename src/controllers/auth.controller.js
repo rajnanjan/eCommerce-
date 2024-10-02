@@ -1,11 +1,10 @@
 import { getUserByUserName } from '../services/user.service.js';
 import { errorResponse } from '../utils/errorResponse.js';
-import bcrypt from 'bcrypt';
-import { generateToken } from '../utils/helper.js';
+import { compare, generateToken } from '../utils/helper.js';
 
 /**
  *
- * @param {import("expres").request} req
+ * @param {import("express").request} req
  * @param {import("express").response} res
  * @param {NextFunction} next
  */
@@ -16,8 +15,8 @@ export const login = async (req, res, next) => {
 
     if (!user) throw errorResponse(400, 'User Not Found');
 
-    const validPass = await bcrypt.compare(password, user.password);
-    if (!validPass) throw errorResponse(400, 'Invalid User Credentials');
+    if (!(await compare(password, user.password)))
+      throw errorResponse(400, 'Invalid User Credentials');
 
     const token = await generateToken(userName);
     const userres = {
@@ -30,3 +29,17 @@ export const login = async (req, res, next) => {
     next(error);
   }
 };
+
+// /**
+//  *
+//  * @param {import("express").request} req
+//  * @param {import("express").response} res
+//  * @param {NextFunction} next
+//  */
+// export const loginViaMobile = async (req, res, next) => {
+//   try {
+//     const { mobile_no } = req.query;
+//   } catch (error) {
+//     next(error);
+//   }
+// };
