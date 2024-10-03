@@ -13,3 +13,22 @@ export const generateToken = async (data) => {
   const token = await jwt.sign({ userName: data }, secret);
   return token;
 };
+
+export const compare = async (userPassword, storedPassword) => {
+  const valid = await bcrypt.compare(userPassword, storedPassword);
+  return valid;
+};
+
+export const verify = async (data, secret) => {
+  const user = await jwt.verify(data, secret);
+  return user;
+};
+
+export const generateOtp = async () => {
+  let otp = '';
+  const length = process.env.OTPLENGTH;
+  for (let i = 0; i < length; i++) {
+    otp += Math.floor(Math.random() * 10);
+  }
+  return otp;
+};
