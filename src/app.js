@@ -7,6 +7,8 @@ import db from './db/db.js';
 import logger from './utils/logger.js';
 import morganMiddleware from './middlewares/morgan.middleware.js';
 import productImages from './routes/attachment.router.js';
+import products from './routes/product.route.js';
+import stores from './routes/store.router.js';
 
 // routes
 import userRouter from './routes/user.route.js';
@@ -33,6 +35,8 @@ app.get('/', (_, res) => {
 });
 
 app.use('/api/v1/image',productImages);
+app.use('/api/v1/product',products);
+app.use('/api/v1/store',stores);
 app.use('/api/v1/users', userRouter);
 
 // Keep the error handler in end of routes
