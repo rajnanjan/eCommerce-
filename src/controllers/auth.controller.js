@@ -1,4 +1,5 @@
-import { getCustomerByMobNo, storeCustomer, storeOtp } from '../services/customer.service.js';
+import { getCustomerByMobNo, storeCustomer } from '../services/customer.service.js';
+import { triggerOTP } from '../services/otp.service.js';
 import { getUserByUserName } from '../services/user.service.js';
 import { errorResponse } from '../utils/errorResponse.js';
 import { compare, generateOtp, generateToken } from '../utils/helper.js';
@@ -53,8 +54,7 @@ export const loginViaMobile = async (req, res, next) => {
 
     const otp = await generateOtp();
 
-    storeOtp(otp, mobile_no);
-    //  TODO: Handle OTP sent
+    triggerOTP(otp, mobile_no);
 
     return res.status(200).send({
       error: false,
@@ -89,6 +89,49 @@ export const signUp = async (req, res, next) => {
 
     // Handle successful signup
     res.status(201).json({ message: 'User created successfully', customer });
+  } catch (error) {
+    next(error);
+  }
+};
+
+/**
+ * To verify the customer login using otp
+ *
+ * @param {Object} req - The HTTP request object.
+ * @param {Object} res - The HTTP response object.
+ * @param {Function} next - The next middleware function.
+ *
+ * @throws  {Error} If an error occurs during OTP verification.
+ */
+export const verifyByOTP = async (req, res, next) => {
+  try {
+    const { mobile_no, otp } = req.body;
+
+    // Check if email already exists
+    const user = await getCustomerByMobNo(mobile_no);
+    if (Array.isArray(user) && user.length < 1) {
+      throw errorResponse(400, 'User Not Found');
+    }
+
+    if (user[0].otp !== otp) {
+      throw errorResponse(400, 'OTP mismatch. Please enter the Valid OTP');
+    }
+
+    const expirationTime = new Date(user[0].u_ts).getTime() + 5 * 60 * 1000; // 5 minutes in milliseconds
+
+    // Check if the current time is past the expiration time
+    if (Date.now() > expirationTime) {
+      throw errorResponse(400, 'OTP has expired.');
+    }
+
+    const token = await generateToken(user[0].email);
+
+    const userres = {
+      user: user[0].name,
+      token,
+      error: false
+    };
+    return res.status(200).send(userres);
   } catch (error) {
     next(error);
   }

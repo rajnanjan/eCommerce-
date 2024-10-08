@@ -19,11 +19,12 @@ export const getCustomerByMobNo = async (mobile_no) => {
 };
 
 /**
- * TO store the generated OTP
+ * Stores a generated OTP for a given mobile number in the database.
  *
- * @param {string} otp
- * @param {string} mobile_no
- * @returns {boolean}
+ * @param {string} otp - The generated OTP.
+ * @param {string} mobile_no - The recipient's mobile number.
+ * @returns {Promise<boolean>} A promise that resolves to `true` if the OTP was successfully stored,
+ *  `false` otherwise.
  */
 export const storeOtp = async (otp, mobile_no) => {
   const conn = await db.getTransaction();

@@ -14,3 +14,8 @@ export const signupSchema = Joi.object({
   email: Joi.string().email().required(),
   mobile_no: Joi.string().length(10).required()
 });
+
+export const verifyOtpSchema = Joi.object({
+  mobile_no: Joi.string().length(10).required(),
+  otp: Joi.number().integer().strict().required()
+});

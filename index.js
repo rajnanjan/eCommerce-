@@ -7,7 +7,7 @@ import logger from './src/utils/logger.js';
 const options = {};
 const server = http.createServer(app);
 const httpsServer = https.createServer(options, app);
-const PORT = process.env.PORT||8000;
+const PORT = process.env.PORT || 8000;
 const SPORT = process.env.SPORT;
 
 if (PORT)

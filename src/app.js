@@ -41,9 +41,8 @@ app.use('/api/v1/auth', authRouter);
 app.use(authMiddleware);
 
 app.use('/api/v1/image', productImages);
-app.use('/api/v1/product',products);
-app.use('/api/v1/store',stores);
-app.use('/api/v1/users', userRouter);
+app.use('/api/v1/product', products);
+app.use('/api/v1/store', stores);
 
 // Keep the error handler in end of routes
 app.use(errorMiddleware);

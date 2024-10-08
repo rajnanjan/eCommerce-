@@ -35,21 +35,20 @@ export const validateQuery = (schema) => {
   };
 };
 
-export const validateImages =(schema) => {
-    return (req, res, next) => {
-        const { error } = schema.validate({
-            name: req.files[0].originalname,
-            image: req.files[0]
-        });
-        const valid = error == null;
-        if (valid) {
-          return next();
-        } else {
-          const { details } = error;
-          const message = details.map((i) => i.message).join(',');
-          res.locals.message = message;
-          next(errorResponse(422, message));
-        }
-      };
+export const validateImages = (schema) => {
+  return (req, res, next) => {
+    const { error } = schema.validate({
+      name: req.files[0].originalname,
+      image: req.files[0]
+    });
+    const valid = error == null;
+    if (valid) {
+      return next();
+    } else {
+      const { details } = error;
+      const message = details.map((i) => i.message).join(',');
+      res.locals.message = message;
+      next(errorResponse(422, message));
+    }
+  };
 };
-
