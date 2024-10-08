@@ -10,7 +10,7 @@
     "format": "npx prettier --write \"**/*.js\"",
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint-staged": "lint-staged",
-    "prepare": "node .husky/install.js",
+    "prepare": "husky",
     "migrate:make": "npx knex --knexfile src/db/knexfile.js --env=dev migrate:make",
     "migrate:latest": "npx knex --knexfile src/db/knexfile.js --env=dev migrate:latest",
     "migrate:down": "npx knex --knexfile src/db/knexfile.js --env=dev migrate:down",
