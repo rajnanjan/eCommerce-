@@ -7,5 +7,6 @@ export const validate_product = Joi.object({
   item_measure: Joi.string().required(),
   item_price: Joi.number().required(),
   store_id: Joi.number().required(),
-  item_image: Joi.number().required()
+  item_image: Joi.number().required(),
+  total_stocks: Joi.number().required()
 });

@@ -44,7 +44,7 @@ export const up = async function (knex) {
     table.string('item_name', 255).notNullable();
     table.string('item_desc', 255);
     table.string('item_measure', 100).notNullable();
-    table.integer('item_price', 10).notNullable();
+    table.decimal('item_price',[10],[2]).notNullable();
     table.bigint('item_image').notNullable().references('product_images.id');
     table.bigint('store_id').notNullable().references('stores.id');
     table.timestamp('c_ts').notNullable().defaultTo(knex.fn.now());
